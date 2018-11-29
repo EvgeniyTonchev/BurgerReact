@@ -1,5 +1,6 @@
 import React from "react";
 //import Radium from 'radium'
+import personClasses from "./Person.css"
 
 const person = (params) => {
     // const style = {
@@ -10,7 +11,7 @@ const person = (params) => {
 
     return (
         //<div className="Person" style={style}>
-        <div className="Person">
+        <div className={personClasses.Person}>
             <p onClick={params.personDeleter}>I'm {params.name} and I'm {params.age} years old !</p>
             <p>{params.children}</p>
             <input type="text" onChange={params.nameChanger} value={params.name}/>
