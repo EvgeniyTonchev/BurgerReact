@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 //import Radium, {StyleRoot} from 'radium'
-
-import Person from "./Person/Person"
+import Persons from "../components/Persons/Persons"
+import Cockpit from "../Cockpit/Cockpit"
 
 import classes from './App.css';
+
+
+import Person from "../components/Persons/Person/Person"
 
 class App extends Component {
   state = {
@@ -49,45 +52,32 @@ class App extends Component {
   render() {
 
     let person = null;
-    let buttonClass = '';
 
 
     if (this.state.showPersons) {
         person = (
                 <div>
-                    {this.state.persons.map((person, index) => {
-                        return <Person
-                            name={person.name}
-                            age={person.age}
-                            key={person.id}
-                            personDeleter = {() => this.deletePersonHandler(index)}
-                            nameChanger = {(event) => this.nameChangerHandler(event, person.id)}/>
-                    })}
+                    <Persons
+                        persons={this.state.persons}
+                        deletePersonH = {this.deletePersonHandler}
+                        nameChangerH = {this.nameChangerHandler}/>
                 </div>
         )
         // style[":hover"] = {
         //     backgroundColor: 'salmon',
         //     color: 'black'
         // }
-        buttonClass = classes.Red;
     }
-
-    let divClasses = [];
-
-    if (this.state.persons.length <= 2){
-        divClasses.push(classes.red);
-    }
-    if (this.state.persons.length <= 1){
-        divClasses.push(classes.bold);
-    }
-
-    let classesString = divClasses.join(' ');
 
     return (
             //<StyleRoot>
               <div className={classes.App}>
-                <h1 className={classesString}>Hi, I am test App.</h1>
-                  <button className={buttonClass} onClick={this.togglePersonsHandler}>Toggle Persons</button>
+                <Cockpit
+                    title={this.props.appTitle}
+                    showPersons={this.state.showPersons}
+                    persons={this.state.persons}
+                    togglePersonsHandler={this.togglePersonsHandler}
+                />
                   {person}
               </div>
             // </StyleRoot>
