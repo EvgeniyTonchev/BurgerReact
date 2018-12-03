@@ -1,14 +1,17 @@
 import React from 'react'
 import classes from "./Cockpit.css"
+import Aux from "../hoc/AuxFile"
 
 const cockpit = (props) => {
 
     let divClasses = [];
-    let buttonClass = '';
+    let buttonClass = [classes.Button];
 
     if(props.showPersons){
-        buttonClass = classes.Red;
+        buttonClass.push(classes.Red);
     }
+
+    buttonClass = buttonClass.join(' ')
 
     if (props.persons.length <= 2){
         divClasses.push(classes.red);
@@ -20,10 +23,11 @@ const cockpit = (props) => {
     let classesString = divClasses.join(' ');
 
     return (
-        <div className={classes.Cockpit}>
-        <h1 className={classesString}>Hi, I am test {props.title}.</h1>
-                  <button className={buttonClass} onClick={props.togglePersonsHandler}>Toggle Persons</button>
-        </div>
+        <>
+            <h1 className={classesString}>Hi, I am test {props.title}.</h1>
+            <button className={buttonClass} onClick={props.togglePersonsHandler}>Toggle Persons</button>
+            {/*<button onClick={props.login}>Log In</button>*/}
+        </>
     );
 }
 

@@ -1,8 +1,30 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import Person from "./Person/Person";
+import PropTypes from "prop-types";
 
-class Persons extends Component{
+class Persons extends PureComponent{
+    constructor(props){
+        super(props);
+        console.log("[Persons.js] constructor");
+    }
+
+    componentWillMount(){
+        console.log("[Persons.js] componentWillMount()")
+    }
+
+    componentDidMount(){
+        console.log("[Persons.js] componentDidMount()")
+    }
+
+    // shouldComponentUpdate(nextProps, nextState){
+    //     console.log("[Persons.js] shouldComponentUpdate()")
+    //     return nextProps.persons !== this.props.persons
+    //         || nextProps.nameChangerH !== this.props.nameChangerH
+    //         || nextProps.deletePersonH !== this.props.deletePersonH;
+    // }
+
     render (){
+        console.log("[Persons.js] render()")
         return this.props.persons.map((person, index) => {
             return <Person
                 name={person.name}
@@ -13,5 +35,11 @@ class Persons extends Component{
     }
 }
 
+Person.propTypes = {
+    name: PropTypes.string,
+    age: PropTypes.number,
+    deletePersonH: PropTypes.func,
+    nameChangerH: PropTypes.func
+}
 
 export default Persons
