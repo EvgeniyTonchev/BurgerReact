@@ -1,0 +1,24 @@
+import {ADD, DECREMENT, INCREMENT, SUBTRACT} from "./actionTypes";
+
+export const increment = () => {
+    return {
+        type: INCREMENT
+    }
+};
+export const decrement = () => {
+    return {
+        type: DECREMENT
+    }
+};
+export const add = (val) => {
+    return {
+        type: ADD,
+        value: val
+    }
+};
+export const subtract = (val) => {
+    return {
+        type: SUBTRACT,
+        value: val
+    }
+};
